@@ -1,7 +1,8 @@
 <?php
 
 Route::get('/', function () {
-    return Larapi::respondOk(); 
+	phpinfo();
+    // return Larapi::respondOk(); 
 });
 
 Route::resource('streams', 'StreamsController');
