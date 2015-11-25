@@ -8,7 +8,7 @@ use Carbon;
 use GuzzleHttp\Client;
 use App\StreamSummary;
 
-class StreamSummary extends Command
+class StreamSummaryCron extends Command
 {
     /**
      * The name and signature of the console command.
