@@ -1,16 +1,16 @@
-var elixir = require('laravel-elixir');
+grunt.loadNpmTasks('grunt-electron-installer')
 
-/*
- |--------------------------------------------------------------------------
- | Elixir Asset Management
- |--------------------------------------------------------------------------
- |
- | Elixir provides a clean, fluent API for defining some basic Gulp tasks
- | for your Laravel application. By default, we are compiling the Sass
- | file for our application, as well as publishing vendor resources.
- |
- */
-
-elixir(function(mix) {
-    mix.sass('app.scss');
-});
+'create-windows-installer': {
+  x64: {
+    appDirectory: '/tmp/build/my-app-64',
+    outputDirectory: '/tmp/build/installer64',
+    authors: 'My App Inc.',
+    exe: 'myapp.exe'
+  },
+  ia32: {
+    appDirectory: '/tmp/build/my-app-32',
+    outputDirectory: '/tmp/build/installer32',
+    authors: 'My App Inc.',
+    exe: 'myapp.exe'
+  }
+}
