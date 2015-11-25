@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\Inspire::class,
-        \StreamJostle\Console\Commands\StreamSummary::class
+        // \StreamJostle\Console\Commands\StreamSummary::class
     ];
 
     /**
