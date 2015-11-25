@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('twitch:stream-summary')->everyMinute();
+        $schedule->command('twitch:stream-summary')->everyFiveMinutes();
         // $schedule->command('inspire')
         //          ->hourly();
     }
