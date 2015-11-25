@@ -2,10 +2,11 @@
 
 namespace StreamJostle\Console\Commands;
 
-use App\StreamSummary;
-use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
+use Carbon;
+use GuzzleHttp\Client;
+use App\StreamSummary;
 
 class StreamSummary extends Command
 {
@@ -53,9 +54,16 @@ class StreamSummary extends Command
             'timeout'  => 5.0
         ]);
 
-        $res = $client->request('GET', 'streams');
-        // $res = json_decode($client, true);
-        file_put_contents(app_path('/StreamJostle/test.txt'), json_encode($res));
-        // exit(PHP_EOL.json_encode($res).PHP_EOL);
+        $res = $client->request('GET', 'streams/summary');
+
+        $body = json_decode($res->getBody(), true);
+        
+        $summary = new StreamSummary;
+        $summary->insert([
+                'channels'      => $body['channels'],
+                'viewers'       => $body['viewers'],
+                'created_at'    => Carbon::now()
+            ]
+        );
     }
 }
