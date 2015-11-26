@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // \App\Console\Commands\Inspire::class,
+        \StreamJostle\Console\Commands\GameSummaryCron::class,
         \StreamJostle\Console\Commands\StreamSummaryCron::class
     ];
 
@@ -26,7 +27,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('twitch:stream-summary')->everyFiveMinutes();
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('twitch:game-summary')->everyFiveMinutes();
     }
 }

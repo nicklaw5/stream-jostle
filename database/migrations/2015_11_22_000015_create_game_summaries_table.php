@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStreamSummariesTable extends Migration
+class CreateGameSummariesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,17 @@ class CreateStreamSummariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stream_summaries', function (Blueprint $t)
+        Schema::create('game_summaries', function (Blueprint $t)
         {
             $t->engine = 'InnoDB';
-            
+
             $t->bigIncrements('id');
+            $t->bigInteger('game_id')->unsigned()->index();
             $t->integer('channels');
             $t->integer('viewers');
             $t->timestamp('created_at')->index();
+
+            $t->foreign('game_id')->references('id')->on('games')->onDelete('restrict')->onUpdate('cascade');
         });
     }
 
@@ -30,6 +33,11 @@ class CreateStreamSummariesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('stream_summaries');
+        Schema::table('game_summaries', function(Blueprint $t)
+        {
+            $t->dropForeign('game_summaries_game_id_foreign');
+        });
+
+        Schema::drop('game_summaries');
     }
 }
